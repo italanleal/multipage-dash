@@ -7,18 +7,8 @@ app.layout = html.Div([
     html.Div(id='page-content')
 ])
 
-@app.callback(
-    Output(component_id=page1.salt('my-output'), component_property='children'),
-    Input(component_id=page1.salt('my-input'), component_property='value')
-)
-
-@app.callback(
-    Output(component_id=page2.salt('my-output'), component_property='children'),
-    Input(component_id=page2.salt('my-input'), component_property='value')
-)
-
-def update_output_div(input_value):
-    return f'Output: {input_value}'
+page1.setCallback(app)
+page2.setCallback(app)
 
 @app.callback(Output('page-content', 'children'),
               [Input('url', 'pathname')])
